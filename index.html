@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disha – Your Future, Your Direction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bg-dots-cyan-500\/10 {
+            background-image: radial-gradient(circle, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+            background-size: 1rem 1rem;
+        }
+        .range-thumb::-webkit-slider-thumb {
+            background-color: #22d3ee;
+        }
+        .range-thumb::-moz-range-thumb {
+            background-color: #22d3ee;
+        }
+        .page {
+            display: none; /* All pages hidden by default */
+        }
+        .page.active {
+            display: block; /* Active page is shown */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0891b2;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen bg-dots-cyan-500/10">
+
+    <!-- Header -->
+    <header id="header" class="py-3 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-700/50">
+        <div class="flex items-center space-x-3 mb-2 md:mb-0">
+            <i data-lucide="trending-up" class="text-teal-400"></i>
+            <h1 class="text-2xl font-bold text-white tracking-wider">Disha<span class="text-cyan-500">.</span></h1>
+        </div>
+        <nav id="main-nav" class="flex items-center space-x-2 md:space-x-4 bg-gray-800/50 p-1 rounded-full">
+            <button data-page="home" class="nav-button px-3 py-1.5 text-sm font-semibold rounded-full transition-colors duration-300 bg-teal-600 text-white">Home</button>
+            <button data-page="form" class="nav-button px-3 py-1.5 text-sm font-semibold rounded-full transition-colors duration-300 text-gray-300 hover:bg-gray-700">Form</button>
+            <button data-page="recommendations" class="nav-button px-3 py-1.5 text-sm font-semibold rounded-full transition-colors duration-300 text-gray-300 hover:bg-gray-700">Recommendations</button>
+            <button data-page="scholarships" class="nav-button px-3 py-1.5 text-sm font-semibold rounded-full transition-colors duration-300 text-gray-300 hover:bg-gray-700">Scholarships</button>
+            <button data-page="saved" class="nav-button px-3 py-1.5 text-sm font-semibold rounded-full transition-colors duration-300 text-gray-300 hover:bg-gray-700">Saved</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] text-center p-4">
+                 <div class="absolute inset-0 bg-grid-cyan-500/10 [mask-image:linear-gradient(to_bottom,white_5%,transparent_50%)]"></div>
+                <div class="relative z-10">
+                    <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-4 leading-tight"> Discover Your<br> <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400"> Perfect College </span> </h2>
+                    <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8"> Disha uses smart matching to connect you with the perfect colleges and courses based on your profile, skills, and dreams. </p>
+                    <button id="find-my-college-btn" class="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out">
+                        Find My College <i data-lucide="arrow-right" class="inline-block ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Page (Multi-step) -->
+        <div id="form-page" class="page">
+             <div class="min-h-[calc(100vh-80px)] flex items-center justify-center p-4">
+                <!-- Step 1: Class Selection -->
+                <div id="form-step-class" class="w-full max-w-md text-center bg-gray-900/50 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-gray-700/50">
+                    <h3 class="text-3xl font-bold text-cyan-400 mb-6">Tell us about yourself</h3>
+                    <div class="space-y-4">
+                        <button data-class="10" class="class-select-btn w-full p-4 bg-gray-800 rounded-lg text-lg font-semibold hover:bg-cyan-600/50 transition-colors">I'm in Class 10th</button>
+                        <button data-class="12" class="class-select-btn w-full p-4 bg-gray-800 rounded-lg text-lg font-semibold hover:bg-teal-600/50 transition-colors">I'm in Class 12th</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Quiz -->
+                <div id="form-step-quiz" class="hidden w-full max-w-xl bg-gray-900/50 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-gray-700/50">
+                    <!-- Quiz content will be injected by JS -->
+                </div>
+                
+                <!-- Step 3: Profile Form -->
+                <div id="form-step-profile" class="hidden w-full max-w-xl bg-gray-900/50 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-gray-700/50">
+                   <!-- Form for 10th or 12th will be injected by JS -->
+                </div>
+             </div>
+        </div>
+
+        <!-- Recommendations Page -->
+        <div id="recommendations-page" class="page">
+             <div class="p-4 sm:p-8">
+                <div class="max-w-7xl mx-auto">
+                    <div id="recommendations-header" class="text-center mb-8">
+                        <!-- Header injected by JS -->
+                    </div>
+                    <div class="lg:hidden mb-4">
+                        <button id="toggle-filters-btn" class="w-full flex justify-center items-center py-3 px-4 bg-gray-800 text-white rounded-lg">
+                            <i data-lucide="filter" class="mr-2"></i> Show Filters
+                        </button>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <aside id="filters-sidebar-container" class="lg:w-1/4 hidden lg:block">
+                           <!-- Filters sidebar injected by JS -->
+                        </aside>
+                        <main class="flex-1">
+                            <div id="recommendations-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                <!-- College cards injected by JS -->
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarships Page -->
+        <div id="scholarships-page" class="page">
+            <div class="p-4 sm:p-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-white">Scholarship Guidance</h2>
+                        <p class="text-gray-400">Find detailed information on scholarships to fund your future.</p>
+                    </div>
+                    <div class="flex justify-center mb-6 bg-gray-800/50 p-1 rounded-full w-fit mx-auto">
+                        <button id="scholarship-tab-10th" class="px-6 py-2 text-sm font-semibold rounded-full transition-colors bg-teal-600 text-white">For Class 10th Students</button>
+                        <button id="scholarship-tab-12th" class="px-6 py-2 text-sm font-semibold rounded-full transition-colors text-gray-300">For Class 12th Students</button>
+                    </div>
+                    <div id="scholarships-container" class="space-y-4">
+                        <!-- Scholarship cards injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Colleges Page -->
+        <div id="saved-page" class="page">
+            <div class="p-4 sm:p-8">
+                <div id="saved-colleges-container" class="max-w-7xl mx-auto">
+                     <!-- Saved colleges content injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Page -->
+        <div id="compare-page" class="page">
+            <div class="min-h-screen p-4 sm:p-8">
+                <button id="back-from-compare-btn" class="flex items-center text-cyan-400 hover:text-cyan-300 mb-8 font-semibold">
+                    <i data-lucide="arrow-left" class="mr-2"></i> Back
+                </button>
+                <div id="compare-tool-container">
+                     <!-- Comparison table injected by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating AI Chatbot -->
+    <div class="fixed bottom-5 right-5 z-50">
+        <div id="chatbot-window" class="hidden w-80 h-96 bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col border border-gray-700/50">
+            <div class="p-3 bg-gray-800/50 rounded-t-2xl flex justify-between items-center">
+                <h4 class="text-white font-bold flex items-center"><i data-lucide="bot" class="mr-2 text-cyan-400"></i> AI Counselor</h4>
+                <button id="close-chatbot-btn" class="text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-3">
+                 <!-- Messages will be injected by JS -->
+            </div>
+            <div class="p-3 border-t border-gray-700/50 flex space-x-2">
+                <input id="chatbot-input" type="text" placeholder="Ask about filters, compare..." class="flex-1 bg-gray-800 border border-gray-600 rounded-full px-4 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm">
+                <button id="chatbot-send-btn" class="bg-teal-600 rounded-full p-2 text-white hover:bg-teal-500"><i data-lucide="arrow-right"></i></button>
+            </div>
+        </div>
+        <button id="open-chatbot-btn" class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transform transition-transform">
+            <i data-lucide="message-square" class="w-8 h-8"></i>
+        </button>
+    </div>
+    
+    <!-- Floating Compare Bar -->
+    <div id="compare-bar" class="hidden fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-lg p-3 border-t border-gray-700/50 z-40">
+       <!-- Content injected by JS -->
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-sm text-center border border-cyan-500/50">
+            <p id="modal-message" class="text-white mb-4"></p>
+            <button id="modal-close-btn" class="px-6 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500 transition-colors">OK</button>
+        </div>
+    </div>
+
+
+    <script type="module">
+        // --- DATA ---
+        const allIndianCities = ["Srinagar", "Jammu", "Anantnag", "Leh", "Shimla", "Manali", "Dehradun", "Haridwar", "Chandigarh", "Ludhiana", "Amritsar", "Jalandhar", "Gurgaon", "Faridabad", "Delhi", "Noida", "Jaipur", "Jodhpur", "Udaipur", "Ahmedabad", "Surat", "Vadodara", "Mumbai", "Pune", "Nagpur", "Panaji", "Indore", "Bhopal", "Jabalpur", "Raipur", "Bhilai", "Lucknow", "Kanpur", "Varanasi", "Patna", "Gaya", "Ranchi", "Jamshedpur", "Kolkata", "Howrah", "Bhubaneswar", "Cuttack", "Guwahati", "Itanagar", "Imphal", "Shillong", "Aizawl", "Kohima", "Agartala", "Gangtok", "Hyderabad", "Warangal", "Visakhapatnam", "Vijayawada", "Bengaluru", "Mysuru", "Mangaluru", "Chennai", "Coimbatore", "Madurai", "Kochi", "Thiruvananthapuram", "Puducherry", "Port Blair"];
+        
+        const topColleges = [
+            { id: 1, type: 'degree', name: "IIT Bombay", location: "Mumbai", fees: 220000, ranking: 1, stream: "Science", description: "Premier institute for technology education and research.", placement: 95, rating: 4.9, scholarships: ["Merit Scholarship", "Financial Aid"], careerPath: ["Research", "Corporate", "Entrepreneurship"] },
+            { id: 2, type: 'degree', name: "IIT Delhi", location: "Delhi", fees: 225000, ranking: 2, stream: "Science", description: "A leading engineering college known for its strong faculty.", placement: 94, rating: 4.8, scholarships: ["Alumni Scholarship"], careerPath: ["Research", "Corporate", "Govt Jobs"] },
+            { id: 3, type: 'degree', name: "IISc Bangalore", location: "Bengaluru", fees: 35000, ranking: 1, stream: "Science", description: "Top-ranked for scientific research and higher education.", placement: 98, rating: 4.9, scholarships: ["KVPY Fellowship"], careerPath: ["Research", "Govt Jobs"] },
+            { id: 4, type: 'degree', name: "Christ University", location: "Bengaluru", fees: 200000, ranking: 15, stream: "Professional", description: "A multi-disciplinary university known for its vibrant campus.", placement: 85, rating: 4.5, scholarships: ["Merit Scholarship"], careerPath: ["Corporate", "Entrepreneurship"] },
+            { id: 21, type: 'degree', name: "University of Kashmir", location: "Srinagar", fees: 15000, ranking: 53, stream: "Professional", description: "A major university in Jammu & Kashmir offering diverse courses.", placement: 70, rating: 4.3, scholarships: ["State Merit Scholarship"], careerPath: ["Govt Jobs", "Research"] },
+            { id: 22, type: 'degree', name: "University of Jammu", location: "Jammu", fees: 12000, ranking: 63, stream: "Professional", description: "A prominent university in the Jammu region.", placement: 68, rating: 4.2, scholarships: ["State Merit Scholarship"], careerPath: ["Govt Jobs", "Research"] },
+        ];
+        
+        // --- BENGALURU SPECIFIC DATA GENERATION ---
+        const generateBengaluruDegreeColleges = (count) => {
+            const colleges = [];
+            const streams = ["Science", "Commerce", "Arts", "Business", "Professional"];
+            const namePrefixes = ["Presidency", "Jain", "Dayananda Sagar", "BMS", "RV", "M.S. Ramaiah", "Garden City", "Kristu Jayanti", "New Horizon", "Acharya"];
+            const nameSuffixes = { Science: ["College of Engineering", "Institute of Technology"], Commerce: ["College of Commerce & Management"], Arts: ["College of Arts and Science", "School of Humanities"], Business: ["Business School", "Institute of Management"], Professional: ["University", "Group of Institutions"]};
+            for (let i = 0; i < count; i++) {
+                const stream = streams[Math.floor(Math.random() * streams.length)];
+                const suffixOptions = nameSuffixes[stream];
+                const suffix = suffixOptions[Math.floor(Math.random() * suffixOptions.length)];
+                const name = `${namePrefixes[Math.floor(Math.random() * namePrefixes.length)]} ${suffix}`;
+                
+                let fees, ranking, placement, rating;
+                const tier = Math.random();
+                if(tier < 0.2) { // Tier 1
+                    fees = 150000 + Math.floor(Math.random() * 350000); ranking = 20 + Math.floor(Math.random() * 80); placement = 80 + Math.floor(Math.random() * 15); rating = 4.3 + Math.random() * 0.5;
+                } else if (tier < 0.7) { // Tier 2
+                    fees = 80000 + Math.floor(Math.random() * 120000); ranking = 100 + Math.floor(Math.random() * 200); placement = 65 + Math.floor(Math.random() * 20); rating = 3.9 + Math.random() * 0.4;
+                } else { // Tier 3
+                    fees = 40000 + Math.floor(Math.random() * 60000); ranking = 300 + Math.floor(Math.random() * 200); placement = 50 + Math.floor(Math.random() * 20); rating = 3.5 + Math.random() * 0.4;
+                }
+
+                colleges.push({ id: 2000 + i, type: 'degree', name: name, location: "Bengaluru", fees: fees, ranking: ranking, stream: stream, description: `A popular ${stream} college in Bengaluru with good industry connections.`, placement: placement, rating: parseFloat(rating.toFixed(1)), scholarships: ["Merit Scholarship"], careerPath: ["Corporate", "Entrepreneurship"] });
+            }
+            return colleges;
+        };
+
+        const generateBengaluruPUCColleges = (count) => {
+            const colleges = [];
+            const streams = ["Science", "Commerce", "Arts"];
+            const namePrefixes = ["Christ", "St. Joseph's", "Mount Carmel", "Jyoti Nivas", "MES", "National", "Baldwin", "Bishop Cotton"];
+            const nameSuffixes = ["PU College", "Junior College", "Composite PU College"];
+            for (let i = 0; i < count; i++) {
+                const stream = streams[Math.floor(Math.random() * streams.length)];
+                const name = `${namePrefixes[Math.floor(Math.random() * namePrefixes.length)]} ${nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)]}`;
+                
+                let fees, rating;
+                const tier = Math.random();
+                if (tier < 0.4) { // Top Tier
+                    fees = 90000 + Math.floor(Math.random() * 60000); rating = 4.4 + Math.random() * 0.5;
+                } else { // Mid Tier
+                    fees = 45000 + Math.floor(Math.random() * 45000); rating = 3.8 + Math.random() * 0.6;
+                }
+
+                colleges.push({ id: 3000 + i, type: 'puc', name, location: "Bengaluru", fees, stream, description: `A well-known Pre-University college in Bengaluru for ${stream} students.`, rating: parseFloat(rating.toFixed(1)), scholarships: ["Merit-based Discount"], keyFeatures: ["Experienced Lecturers", "Co-curricular Activities"] });
+            }
+            return colleges;
+        };
+        
+        // --- DATA FOR OTHER CITIES ---
+        const generateOtherCityColleges = (count) => { const colleges = []; const cities = allIndianCities.filter(c => c !== "Bengaluru"); const streams = ["Science", "Commerce", "Arts", "Law", "Medicine", "Business", "Professional"]; for (let i = 0; i < count; i++) { const stream = streams[Math.floor(Math.random() * streams.length)]; const city = cities[Math.floor(Math.random() * cities.length)]; colleges.push({ id: 4000 + i, type: 'degree', name: `Regional ${stream} College, ${city}`, location: city, fees: 50000 + Math.floor(Math.random() * 200000), ranking: 100 + Math.floor(Math.random() * 400), stream: stream, description: `A well-regarded ${stream} institution in ${city}.`, placement: 60 + Math.floor(Math.random() * 25), rating: parseFloat((3.8 + Math.random() * 0.7).toFixed(1)), scholarships: ["General Scholarship"], careerPath: ["Corporate", "Research"] }); } return colleges; };
+        const generateOtherCityPUCColleges = (count) => { const colleges = []; const cities = allIndianCities.filter(c => c !== "Bengaluru"); const streams = ["Science", "Commerce", "Arts"]; const namePrefixes = ["Govt. Higher Secondary", "Public School & College", "Central Model School", "State Junior College"]; const nameSuffixes = ["", ""]; for (let i = 0; i < count; i++) { const stream = streams[Math.floor(Math.random() * streams.length)]; const city = cities[Math.floor(Math.random() * cities.length)]; const name = `${namePrefixes[Math.floor(Math.random() * namePrefixes.length)]}, ${city}`; colleges.push({ id: 5000 + i, type: 'puc', name: name, location: city, fees: 20000 + Math.floor(Math.random() * 80000), stream: stream, description: `A leading institution for 11th and 12th grade education in ${city}.`, rating: parseFloat((3.8 + Math.random()).toFixed(1)), scholarships: ["State Merit Scholarship"], keyFeatures: ["Experienced Faculty", "Govt. Certified"] }); } return colleges; };
+
+        // --- COMBINING ALL DATA ---
+        const dummyDegreeColleges = [...topColleges, ...generateBengaluruDegreeColleges(150), ...generateOtherCityColleges(350)];
+        const dummyPUCColleges = [...generateBengaluruPUCColleges(100), ...generateOtherCityPUCColleges(150)];
+        
+        const questionPool10th = [
+            { question: "Which number logically follows this series? 4, 6, 9, 13, __", options: ["18", "17", "16", "19"], answer: "18" },
+            { question: "CUP is to LIP as BIRD is to ____?", options: ["GRASS", "FOREST", "BEAK", "BUSH"], answer: "BEAK" },
+            { question: "Which of the following is the 'powerhouse' of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Cell Wall"], answer: "Mitochondria" },
+            { question: "If a train travels at 60 km/h, how far will it travel in 45 minutes?", options: ["30 km", "60 km", "45 km", "50 km"], answer: "45 km" },
+            { question: "Find the odd one out: ", options: ["Triangle", "Square", "Circle", "Rectangle"], answer: "Circle" },
+            { question: "Which series follows the pattern? 2, 5, 10, 17, __", options: ["25", "26", "27", "28"], answer: "26" },
+            { question: "Analogy: Doctor is to Hospital as Teacher is to ____?", options: ["Student", "Book", "School", "Board"], answer: "School" },
+            { question: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" },
+            { question: "What is the largest planet in our solar system?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Jupiter" },
+            { question: "What is the chemical symbol for Gold?", options: ["Ag", "Au", "Go", "Gd"], answer: "Au" },
+            { question: "What is the square root of 144?", options: ["11", "12", "13", "14"], answer: "12" },
+            { question: "What is the sum of angles in a triangle?", options: ["90 degrees", "180 degrees", "270 degrees", "360 degrees"], answer: "180 degrees" }
+        ];
+
+        const questionPool12th = [
+            { question: "Which number logically follows this series? 1, 1, 2, 3, 5, 8, __", options: ["11", "13", "12", "14"], answer: "13" },
+            { question: "A bat and a ball cost ₹110 in total. The bat costs ₹100 more than the ball. How much does the ball cost?", options: ["₹10", "₹100", "₹5", "₹15"], answer: "₹5" },
+            { question: "What fundamental force is responsible for chemical bonding?", options: ["Gravitational", "Weak Nuclear", "Strong Nuclear", "Electromagnetic"], answer: "Electromagnetic" },
+            { question: "If all Bloops are Zargs and some Zargs are Flibs, which statement is definitely true?", options: ["All Bloops are Flibs", "Some Bloops are Flibs", "No Bloops are Flibs", "Cannot be determined"], answer: "Cannot be determined" },
+            { question: "What is the next prime number after 19?", options: ["21", "22", "23", "25"], answer: "23" },
+            { question: "Analogy: Thermometer is to Temperature as Barometer is to ____?", options: ["Height", "Pressure", "Humidity", "Wind"], answer: "Pressure" },
+            { question: "What is the SI unit of electric current?", options: ["Volt", "Watt", "Ohm", "Ampere"], answer: "Ampere" },
+            { question: "What does 'pH' stand for?", options: ["Power of Helium", "Potential of Hydrogen", "Purity of Halogen", "Proton H-factor"], answer: "Potential of Hydrogen" },
+            { question: "Inertia is a property related to an object's ____?", options: ["Velocity", "Acceleration", "Mass", "Shape"], answer: "Mass" },
+            { question: "What is the most abundant gas in Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Argon", "Nitrogen"], answer: "Nitrogen" },
+            { question: "What is the derivative of x²?", options: ["x", "2x", "x³/3", "2"], answer: "2x" },
+            { question: "If log₂(x) = 4, what is x?", options: ["8", "2", "16", "6"], answer: "16" }
+        ];
+
+        const scholarshipsFor10th = [ { name: "National Talent Search Examination (NTSE)", amount: "₹1,250/month", eligibility: "Studying in Class 10. Open for all streams.", exam: "NTSE Stage I (State) & Stage II (National)", guidance: ["Obtain the application form from your state's liaison officer or education portal (usually in Oct-Nov).", "Get the form attested by your school principal.", "Submit the form before the state-wise deadline.", "Appear for Stage I exam (MAT & SAT).", "If qualified, appear for the Stage II exam conducted by NCERT."] }, { name: "Vidyadhan Scholarship", amount: "Varies by state", eligibility: "Passed Class 10 with over 90% marks. Family income must be less than ₹2 Lakh per annum.", exam: "Merit-based + Online Test/Interview", guidance: ["Apply online through the Vidyadhan portal (vidyadhan.org).", "Submit required documents like marksheet and income certificate.", "Shortlisted candidates will be invited for an online test.", "Final selection is based on academic merit and test/interview performance."] }, { name: "HDFC Bank Parivartan's ECSS", amount: "Up to ₹18,000", eligibility: "For students facing a family crisis. Must have >55% in previous exam. Family income < ₹2.5 Lakh.", exam: "None (Merit and Need-based)", guidance: ["Apply online through portals like Buddy4Study when applications are open.", "Fill the form with details about your academic record and family's financial situation.", "Provide documents proving the family crisis (if applicable).", "Selection is based on screening by HDFC's partners."] }, ];
+        const scholarshipsFor12th = [ { name: "INSPIRE Scholarship (SHE)", amount: "₹80,000 per year", eligibility: "Top 1% in Class 12 board exams. Enrolled in B.Sc. or Integrated M.Sc. in Basic/Natural Sciences.", exam: "None (Based on Board Exam Performance)", guidance: ["Check if you are within the top 1% cut-off for your board, released by DST.", "Apply online at the INSPIRE web portal (online-inspire.gov.in).", "Upload Class 12 marksheet, Class 10 certificate, and an endorsement certificate from your college.", "Await selection confirmation, which can take a few months."] }, { name: "Prime Minister's Scholarship Scheme (PMSS)", amount: "₹36,000/year for girls, ₹30,000/year for boys", eligibility: "Wards of Ex-servicemen, Coast Guard, or State Police personnel. Minimum 60% in Class 12/Diploma/Graduation.", exam: "None (Based on Merit)", guidance: ["Applications are submitted online via the National Scholarship Portal (scholarships.gov.in).", "Register as a new user on NSP.", "Fill the detailed application form and select the PMSS scheme.", "Upload required documents, including service certificates and academic marksheets."] }, { name: "Reliance Foundation Undergraduate Scholarships", amount: "Up to ₹2,00,000", eligibility: "Enrolled in 1st year of any UG degree. Min 60% in Class 12. Household income < ₹15 Lakh.", exam: "Mandatory Online Aptitude Test", guidance: ["Apply online through the official Reliance Foundation Scholarships portal.", "Complete the application with personal, academic, and achievement details.", "Take the mandatory 60-minute online aptitude test (verbal, analytical, numerical ability).", "Selection is based on a combination of aptitude test score, academic merit, and financial need."] }, { name: "Foundation for Excellence (FFE) Scholarship", amount: "Covers tuition and related expenses", eligibility: "1st year Engineering, MBBS, or Law students. Family income < ₹3 Lakh. Must meet specific entrance exam rank criteria (e.g., JEE Main rank < 90,000).", exam: "Based on JEE/NEET/CLAT Ranks", guidance: ["Check eligibility criteria for your specific course and state on the FFE website (ffe.org).", "Apply online during the application window (usually starts in August).", "Provide detailed information about your family income, exam ranks, and college admission.", "The selection process is rigorous and based on both merit and financial background."] }, ];
+
+        // --- APPLICATION STATE ---
+        let studentProfile = null;
+        let savedList = [];
+        let compareList = [];
+        let currentFilters = {};
+
+        // --- DOM ELEMENTS ---
+        const pages = document.querySelectorAll('.page');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const modal = document.getElementById('modal');
+        const modalMessage = document.getElementById('modal-message');
+        const recommendationsGrid = document.getElementById('recommendations-grid');
+        const compareBar = document.getElementById('compare-bar');
+
+        // --- CORE FUNCTIONS ---
+
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(`${pageId}-page`).classList.add('active');
+            
+            navButtons.forEach(btn => {
+                if (btn.dataset.page === pageId) {
+                    btn.classList.add('bg-teal-600', 'text-white');
+                    btn.classList.remove('text-gray-300', 'hover:bg-gray-700');
+                } else {
+                    btn.classList.remove('bg-teal-600', 'text-white');
+                    btn.classList.add('text-gray-300', 'hover:bg-gray-700');
+                }
+            });
+            window.scrollTo(0, 0);
+
+            if (pageId === 'saved') renderSavedPage();
+            // Updated scholarship page rendering logic
+            if (pageId === 'scholarships') {
+                const defaultTab = studentProfile?.class === '12' ? '12th' : '10th';
+                renderScholarshipsPage(defaultTab);
+            }
+        }
+
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+        }
+        
+        // --- EVENT LISTENERS ---
+        document.getElementById('modal-close-btn').addEventListener('click', () => modal.classList.add('hidden'));
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pageId = btn.dataset.page;
+                if ((pageId === 'recommendations' || pageId === 'saved') && !studentProfile) {
+                    showModal('Please create a profile first to see personalized results.');
+                    showPage('form');
+                } else {
+                    showPage(pageId);
+                }
+            });
+        });
+
+        document.getElementById('find-my-college-btn').addEventListener('click', () => showPage('form'));
+        
+        // --- FORM & QUIZ LOGIC ---
+        const formStepClass = document.getElementById('form-step-class');
+        const formStepQuiz = document.getElementById('form-step-quiz');
+        const formStepProfile = document.getElementById('form-step-profile');
+        
+        let tempStudentClass = null;
+
+        document.querySelectorAll('.class-select-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                tempStudentClass = e.target.dataset.class;
+                renderQuiz(tempStudentClass);
+                formStepClass.classList.add('hidden');
+                formStepQuiz.classList.remove('hidden');
+            });
+        });
+
+        function renderQuiz(studentClass) {
+            const questionPool = studentClass === '10' ? questionPool10th : questionPool12th;
+            // Shuffle the pool and pick the first 5 questions
+            const questions = [...questionPool].sort(() => 0.5 - Math.random()).slice(0, 5);
+
+            let currentQuestionIndex = 0;
+            let answers = {};
+            
+            function displayQuestion() {
+                 const currentQuestion = questions[currentQuestionIndex];
+                 const selectedAnswer = answers[currentQuestionIndex];
+                 formStepQuiz.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-cyan-400 flex items-center"><i data-lucide="lightbulb" class="mr-2"></i> Aptitude Quiz</h3>
+                        <p class="text-gray-400 font-semibold">Question ${currentQuestionIndex + 1}/${questions.length}</p>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-1.5 mb-6">
+                        <div class="bg-teal-500 h-1.5 rounded-full" style="width: ${((currentQuestionIndex + 1) / questions.length) * 100}%"></div>
+                    </div>
+                    <p class="text-lg text-white mb-6 h-16">${currentQuestion.question}</p>
+                    <div class="space-y-3 mb-8">
+                        ${currentQuestion.options.map(option => `
+                            <button data-option="${option}" class="quiz-option-btn w-full text-left p-4 rounded-lg transition-all duration-200 border-2 ${selectedAnswer === option ? 'bg-cyan-600/30 border-cyan-500 text-white font-semibold' : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:bg-gray-700/50'}">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="flex justify-between items-center mt-6">
+                        <button id="quiz-back-btn" class="text-gray-300 hover:text-white">&larr; Back</button>
+                        <button id="quiz-next-btn" class="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out ${!selectedAnswer ? 'opacity-50 cursor-not-allowed' : ''}" ${!selectedAnswer ? 'disabled' : ''}>
+                           ${currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                        </button>
+                    </div>`;
+                lucide.createIcons();
+            }
+
+            formStepQuiz.addEventListener('click', e => {
+                const optionBtn = e.target.closest('.quiz-option-btn');
+                if (optionBtn) {
+                    answers[currentQuestionIndex] = optionBtn.dataset.option;
+                    displayQuestion();
+                }
+                if(e.target.id === 'quiz-back-btn') {
+                    formStepQuiz.classList.add('hidden');
+                    formStepClass.classList.remove('hidden');
+                }
+                if (e.target.id === 'quiz-next-btn') {
+                    if (currentQuestionIndex < questions.length - 1) {
+                        currentQuestionIndex++;
+                        displayQuestion();
+                    } else {
+                        showQuizResult();
+                    }
+                }
+            });
+            
+            function showQuizResult(){
+                 let score = 0;
+                 questions.forEach((q, index) => { if (answers[index] === q.answer) score++; });
+                 
+                 formStepQuiz.innerHTML = `
+                    <div class="text-center">
+                        <h3 class="text-3xl font-bold text-cyan-400 mb-4">Quiz Complete!</h3>
+                        <p class="text-lg text-gray-300 mb-2">Your Aptitude Score:</p>
+                        <p class="text-6xl font-bold text-green-400 mb-6">${score} / ${questions.length}</p>
+                        <p class="text-gray-400 mb-8">Now, let's complete your profile.</p>
+                        <button id="proceed-to-form-btn" data-score="${score}" class="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out">
+                            Proceed to Profile Form <i data-lucide="arrow-right" class="inline-block ml-2"></i>
+                        </button>
+                    </div>`;
+                 lucide.createIcons();
+                 
+                 document.getElementById('proceed-to-form-btn').addEventListener('click', (e) => {
+                    const quizScore = e.target.dataset.score;
+                    renderProfileForm(tempStudentClass, quizScore);
+                    formStepQuiz.classList.add('hidden');
+                    formStepProfile.classList.remove('hidden');
+                 });
+            }
+
+            displayQuestion();
+        }
+        
+        function renderProfileForm(studentClass, quizScore) {
+            if (studentClass === '10') {
+                formStepProfile.innerHTML = `
+                     <form id="form-10th">
+                        <h3 class="text-3xl font-bold text-cyan-400 text-center mb-6">Class 10th Profile</h3>
+                        <div class="space-y-6">
+                            <div class="relative"><i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i><input type="text" name="name" placeholder="Your Name" required class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 pl-12 text-white focus:outline-none focus:border-cyan-500"/></div>
+                            <div class="relative"><i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i><input type="email" name="email" placeholder="Your Email" required class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 pl-12 text-white focus:outline-none focus:border-cyan-500"/></div>
+                            <div><label class="block text-gray-300 mb-2">What subjects interest you? (Select at least one)</label><div class="grid grid-cols-3 gap-2" id="interest-buttons">${["Science", "Commerce", "Arts"].map(i => `<button type="button" data-interest="${i}" class="interest-btn p-3 rounded-lg text-center transition-colors bg-gray-800 hover:bg-gray-700">${i}</button>`).join('')}</div></div>
+                            <div class="text-center text-sm text-gray-400">Aptitude Score: <span class="font-bold text-green-400">${quizScore}/5</span></div>
+                            <div class="flex justify-between items-center mt-6"> <button type="button" id="form-back-btn" class="text-gray-300 hover:text-white">&larr; Back to Quiz</button> <button type="submit" class="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out">Find Junior Colleges</button> </div>
+                        </div>
+                     </form>`;
+            } else {
+                 formStepProfile.innerHTML = `
+                    <form id="form-12th">
+                         <h3 class="text-3xl font-bold text-cyan-400 text-center mb-6">Class 12th Profile</h3>
+                         <div class="space-y-6">
+                             <div class="relative"><i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i><input type="text" name="name" placeholder="Your Name" required class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 pl-12 text-white focus:outline-none focus:border-cyan-500"/></div>
+                             <div class="relative"><i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i><input type="email" name="email" placeholder="Your Email" required class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 pl-12 text-white focus:outline-none focus:border-cyan-500"/></div>
+                             <div><label class="block text-gray-300 mb-2">Your Stream</label><select name="stream" class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500 appearance-none"><option>Science-PCM</option><option>Science-PCB</option><option>Commerce</option><option>Arts</option></select></div>
+                             <div><label class="block text-gray-300 mb-2">Board Marks / Entrance Rank</label><div class="flex gap-2"><select name="marksType" class="bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 text-white"><option>Percentage</option><option>Rank</option></select><input type="number" name="marks" value="85" required class="w-full bg-gray-800/50 border-2 border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500"/></div></div>
+                             <div><label class="block text-gray-300 mb-2">Budget (Max Annual Fees)</label><div class="flex items-center space-x-4"><input type="range" name="budget" min="10000" max="3000000" step="10000" value="200000" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-thumb" id="budget-range" /><span id="budget-value" class="text-cyan-400 font-bold w-32 text-center">₹ 2,00,000</span></div></div>
+                             <div class="text-center text-sm text-gray-400">Aptitude Score: <span class="font-bold text-green-400">${quizScore}/5</span></div>
+                             <div class="flex justify-between items-center mt-6"> <button type="button" id="form-back-btn" class="text-gray-300 hover:text-white">&larr; Back to Quiz</button> <button type="submit" class="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out">Find Degree Colleges</button> </div>
+                         </div>
+                    </form>`;
+            }
+            lucide.createIcons();
+            
+            document.getElementById('form-back-btn').addEventListener('click', () => {
+                 formStepProfile.classList.add('hidden');
+                 formStepQuiz.classList.remove('hidden');
+            });
+
+            if (studentClass === '10') {
+                const interestButtons = document.getElementById('interest-buttons');
+                let selectedInterests = [];
+                interestButtons.addEventListener('click', e => {
+                    const btn = e.target.closest('.interest-btn');
+                    if (btn) {
+                        const interest = btn.dataset.interest;
+                        if (selectedInterests.includes(interest)) {
+                            selectedInterests = selectedInterests.filter(i => i !== interest);
+                            btn.classList.remove('bg-cyan-600', 'text-white');
+                            btn.classList.add('bg-gray-800', 'hover:bg-gray-700');
+                        } else {
+                            selectedInterests.push(interest);
+                            btn.classList.add('bg-cyan-600', 'text-white');
+                            btn.classList.remove('bg-gray-800', 'hover:bg-gray-700');
+                        }
+                    }
+                });
+                document.getElementById('form-10th').addEventListener('submit', e => {
+                    e.preventDefault();
+                    if (selectedInterests.length === 0) {
+                        showModal("Please select at least one interest.");
+                        return;
+                    }
+                    const formData = new FormData(e.target);
+                    studentProfile = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        interests: selectedInterests,
+                        class: '10',
+                        quizScore: parseInt(quizScore)
+                    };
+                    initializeRecommendations();
+                    showPage('recommendations');
+                });
+            } else {
+                const budgetRange = document.getElementById('budget-range');
+                const budgetValue = document.getElementById('budget-value');
+                budgetRange.addEventListener('input', e => {
+                    budgetValue.textContent = `₹ ${Number(e.target.value).toLocaleString('en-IN')}`;
+                });
+                document.getElementById('form-12th').addEventListener('submit', e => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target);
+                     studentProfile = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        stream: formData.get('stream'),
+                        marksType: formData.get('marksType'),
+                        marks: formData.get('marks'),
+                        budget: formData.get('budget'),
+                        class: '12',
+                        quizScore: parseInt(quizScore),
+                        careerGoal: 'Corporate'
+                    };
+                    initializeRecommendations();
+                    showPage('recommendations');
+                });
+            }
+        }
+        
+        // --- RECOMMENDATIONS LOGIC ---
+        function calculateFitScore(college, profile) {
+            let score = 0;
+            if (!profile) return 0;
+            if (profile.class === '12') {
+                const profileStream = profile.stream.split('-')[0];
+                if (college.stream === profileStream) score += 40;
+                if (college.careerPath && college.careerPath.includes(profile.careerGoal)) score += 20;
+                if (college.fees <= profile.budget) score += 15;
+                score += (profile.quizScore / 5) * 25;
+            } else {
+                if (profile.interests.includes(college.stream)) score += 60;
+                score += (profile.quizScore / 5) * 40;
+            }
+            return Math.min(score, 100);
+        }
+
+        function getCollegeCardHTML(college) {
+             const fit = calculateFitScore(college, studentProfile);
+             const isSaved = savedList.some(c => c.id === college.id);
+             let fitLabel;
+             if (fit > 80) fitLabel = { text: "Perfect Fit", color: "text-green-400 border-green-500/30 bg-green-500/10" };
+             else if (fit > 60) fitLabel = { text: "Strong Match", color: "text-yellow-400 border-yellow-500/30 bg-yellow-500/10" };
+             else fitLabel = { text: "Moderate Match", color: "text-blue-400 border-blue-500/30 bg-blue-500/10" };
+
+             return `
+                <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 flex flex-col hover:border-cyan-500/50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex items-center space-x-3 min-w-0">
+                            <img src="https://placehold.co/100x100/1a202c/FFFFFF?text=${encodeURIComponent(college.name.substring(0,2))}" alt="${college.name} logo" class="w-12 h-12 rounded-md object-cover flex-shrink-0" />
+                            <div class="min-w-0">
+                                <h3 class="text-lg font-bold text-white truncate" title="${college.name}">${college.name}</h3>
+                                <p class="text-sm text-gray-400 flex items-center"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>${college.location}</p>
+                            </div>
+                        </div>
+                        <div class="px-2 py-1 text-xs font-bold rounded-full border flex items-center space-x-1 ${fitLabel.color} flex-shrink-0 ml-2"><span>${fit.toFixed(0)}% Fit</span></div>
+                    </div>
+                    <div class="text-sm text-gray-300 mb-4 flex-grow">${college.description}</div>
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs mb-4">
+                        <div class="bg-gray-900/60 p-2 rounded-md"><p class="font-bold text-cyan-400">₹${Number(college.fees/1000).toFixed(0)}K</p><p class="text-gray-400">Fees/Yr</p></div>
+                        ${college.ranking ? `<div class="bg-gray-900/60 p-2 rounded-md"><p class="font-bold text-cyan-400">#${college.ranking}</p><p class="text-gray-400">Ranking</p></div>` : ''}
+                        ${college.placement ? `<div class="bg-gray-900/60 p-2 rounded-md"><p class="font-bold text-cyan-400">${college.placement}%</p><p class="text-gray-400">Placement</p></div>` : ''}
+                        ${college.rating ? `<div class="bg-gray-900/60 p-2 rounded-md"><p class="font-bold text-cyan-400">${college.rating}★</p><p class="text-gray-400">Rating</p></div>` : ''}
+                    </div>
+                     ${college.keyFeatures ? `<div class="text-xs text-gray-400 mb-4"><span class="font-semibold text-gray-200">Features:</span> ${college.keyFeatures.join(', ')}</div>` : ''}
+                    <div class="mt-auto pt-3 border-t border-gray-700 flex justify-between items-center">
+                        <button data-action="save" data-college-id="${college.id}" class="action-btn flex items-center text-sm font-semibold transition-colors text-cyan-400 hover:text-cyan-300">
+                            <i data-lucide="heart" class="w-5 h-5 mr-2 ${isSaved ? 'fill-current' : ''}"></i>${isSaved ? "Saved" : "Save"}
+                        </button>
+                        <button data-action="compare" data-college-id="${college.id}" class="action-btn text-sm bg-gray-700/80 text-white px-3 py-1.5 rounded-full hover:bg-gray-700 transition-colors">Add to Compare</button>
+                    </div>
+                </div>`;
+        }
+
+        function renderRecommendations() {
+            if (!studentProfile) return;
+            const collegeList = studentProfile.class === '10' ? dummyPUCColleges : dummyDegreeColleges;
+            let filtered = collegeList.filter(c => {
+                if (c.fees > currentFilters.budget) return false;
+                if (currentFilters.city !== 'Any' && c.location !== currentFilters.city) return false;
+                if (currentFilters.stream !== 'Any' && c.stream !== currentFilters.stream) return false;
+                return true;
+            });
+            switch (currentFilters.sortBy) {
+                case 'ranking': filtered.sort((a, b) => (a.ranking || Infinity) - (b.ranking || Infinity)); break;
+                case 'fees_asc': filtered.sort((a, b) => a.fees - b.fees); break;
+                case 'fit': default: filtered.sort((a, b) => calculateFitScore(b, studentProfile) - calculateFitScore(a, studentProfile)); break;
+            }
+            if (filtered.length > 0) {
+                recommendationsGrid.innerHTML = filtered.map(getCollegeCardHTML).join('');
+            } else {
+                recommendationsGrid.innerHTML = `<div class="col-span-1 md:col-span-2 xl:col-span-3 flex flex-col items-center justify-center text-center h-full bg-gray-800/50 p-8 rounded-lg"><i data-lucide="search" class="w-12 h-12 text-cyan-400 mb-4"></i><h3 class="text-2xl font-bold text-white">No Matches Found</h3><p class="text-gray-400 mt-2">Try adjusting your filters for a wider search.</p></div>`;
+            }
+            lucide.createIcons();
+        }
+
+        function renderFilters() {
+            const filtersContainer = document.getElementById('filters-sidebar-container');
+            const is10th = studentProfile.class === '10';
+            const streamOptions = is10th ? ["Science", "Commerce", "Arts"] : ["Science", "Commerce", "Arts", "Law", "Medicine", "Business", "Professional"];
+            filtersContainer.innerHTML = `
+                <div class="bg-gray-900/70 backdrop-blur-lg p-6 rounded-lg border border-gray-700/50 w-full lg:sticky top-24">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center"><i data-lucide="filter" class="mr-2 text-cyan-400"></i> Filters</h3>
+                    <div class="mb-6"><label class="block text-gray-300 mb-2">Budget</label><input type="range" name="budget" min="10000" max="${currentFilters.maxBudget}" step="10000" value="${currentFilters.budget}" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-thumb"/><div class="text-right text-cyan-400 text-sm mt-1">Up to ₹${Number(currentFilters.budget).toLocaleString('en-IN')}</div></div>
+                    <div class="mb-6"><label class="block text-gray-300 mb-2">City</label><select name="city" class="w-full bg-gray-800 border border-gray-600 rounded-md p-2 text-white focus:outline-none focus:border-cyan-500"><option>Any</option>${allIndianCities.sort().map(c => `<option ${currentFilters.city === c ? 'selected' : ''}>${c}</option>`).join('')}</select></div>
+                    <div class="mb-6"><label class="block text-gray-300 mb-2">Stream</label><select name="stream" class="w-full bg-gray-800 border border-gray-600 rounded-md p-2 text-white focus:outline-none focus:border-cyan-500"><option>Any</option>${streamOptions.map(s => `<option ${currentFilters.stream === s ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
+                    <div class="mb-6"><label class="block text-gray-300 mb-2">Sort By</label><select name="sortBy" class="w-full bg-gray-800 border border-gray-600 rounded-md p-2 text-white focus:outline-none focus:border-cyan-500"><option value="fit" ${currentFilters.sortBy === 'fit' ? 'selected' : ''}>Fit %</option>${!is10th ? `<option value="ranking" ${currentFilters.sortBy === 'ranking' ? 'selected' : ''}>Ranking</option>` : ''}<option value="fees_asc" ${currentFilters.sortBy === 'fees_asc' ? 'selected' : ''}>Fees (Low-High)</option></select></div>
+                </div>`;
+            lucide.createIcons();
+            filtersContainer.querySelectorAll('input, select').forEach(el => {
+                el.addEventListener('input', (e) => {
+                    currentFilters[e.target.name] = e.target.value;
+                    if (e.target.name === 'budget') {
+                        filtersContainer.querySelector('.text-right.text-cyan-400').textContent = `Up to ₹${Number(e.target.value).toLocaleString('en-IN')}`;
+                    }
+                    renderRecommendations();
+                });
+            });
+        }
+
+        function initializeRecommendations() {
+            const recommendationsHeader = document.getElementById('recommendations-header');
+            const is10th = studentProfile.class === '10';
+            recommendationsHeader.innerHTML = `<h2 class="text-3xl font-bold text-white">Your ${is10th ? "Junior College" : "Degree College"} Matches, ${studentProfile.name}</h2><p class="text-gray-400">Here are the best options based on your profile and preferences.</p>`;
+            currentFilters = {
+                budget: studentProfile.budget || (is10th ? 150000 : 500000),
+                city: 'Any',
+                stream: is10th ? studentProfile.interests[0] : studentProfile.stream.split('-')[0],
+                sortBy: 'fit',
+                type: is10th ? 'puc' : 'degree',
+                maxBudget: is10th ? 250000 : 3000000
+            };
+            renderFilters();
+            renderRecommendations();
+        }
+
+        document.getElementById('toggle-filters-btn').addEventListener('click', () => {
+            const sidebar = document.getElementById('filters-sidebar-container');
+            sidebar.classList.toggle('hidden');
+        });
+
+        document.getElementById('recommendations-grid').addEventListener('click', (e) => {
+            const btn = e.target.closest('.action-btn');
+            if (!btn) return;
+            const action = btn.dataset.action;
+            const collegeId = parseInt(btn.dataset.collegeId);
+            const collegeList = studentProfile.class === '10' ? dummyPUCColleges : dummyDegreeColleges;
+            const college = collegeList.find(c => c.id === collegeId);
+
+            if (action === 'save') {
+                const isSaved = savedList.some(c => c.id === collegeId);
+                if (isSaved) {
+                    savedList = savedList.filter(c => c.id !== collegeId);
+                } else {
+                    savedList.push(college);
+                }
+                renderRecommendations();
+            } else if (action === 'compare') {
+                if (compareList.some(c => c.id === collegeId)) return;
+                if (compareList.length >= 3) {
+                    showModal("You can only compare up to 3 colleges.");
+                } else {
+                    compareList.push(college);
+                    renderCompareBar();
+                }
+            }
+        });
+
+        // --- SCHOLARSHIPS PAGE ---
+        const scholarshipTab10th = document.getElementById('scholarship-tab-10th');
+        const scholarshipTab12th = document.getElementById('scholarship-tab-12th');
+        const scholarshipsContainer = document.getElementById('scholarships-container');
+
+        function getScholarshipCardHTML(scholarship){
+            return `<div class="bg-gray-800/50 border border-gray-700 p-5 rounded-lg">
+                        <div class="flex justify-between items-start"><div><h3 class="text-lg font-semibold text-cyan-300">${scholarship.name}</h3><p class="text-sm text-gray-400 mt-1 max-w-xl">${scholarship.eligibility}</p></div><p class="font-bold text-green-400 text-lg flex-shrink-0 ml-4">${scholarship.amount}</p></div>
+                        <div class="mt-3"><p class="text-sm text-gray-300"><span class="font-semibold">Required Exam:</span> ${scholarship.exam}</p></div>
+                        <div class="mt-4"><button data-action="toggle-guidance" class="text-sm font-semibold text-cyan-400 flex items-center">Show Step-by-Step Guidance <i data-lucide="chevron-down" class="ml-1 transition-transform w-4 h-4"></i></button><div class="hidden mt-3 pl-5 border-l-2 border-cyan-500/30"><ol class="list-decimal space-y-2 text-gray-300 text-sm">${scholarship.guidance.map(step => `<li>${step}</li>`).join('')}</ol></div></div>
+                    </div>`;
+        }
+
+        function renderScholarshipsPage(tab = '10th') {
+            const scholarships = tab === '10th' ? scholarshipsFor10th : scholarshipsFor12th;
+            scholarshipsContainer.innerHTML = scholarships.map(getScholarshipCardHTML).join('');
+            
+            if (tab === '10th') {
+                scholarshipTab10th.classList.add('bg-teal-600', 'text-white');
+                scholarshipTab12th.classList.remove('bg-teal-600', 'text-white');
+                scholarshipTab12th.classList.add('text-gray-300');
+            } else {
+                scholarshipTab12th.classList.add('bg-teal-600', 'text-white');
+                scholarshipTab10th.classList.remove('bg-teal-600', 'text-white');
+                scholarshipTab10th.classList.add('text-gray-300');
+            }
+            lucide.createIcons();
+        }
+
+        scholarshipTab10th.addEventListener('click', () => renderScholarshipsPage('10th'));
+        scholarshipTab12th.addEventListener('click', () => renderScholarshipsPage('12th'));
+
+        scholarshipsContainer.addEventListener('click', e => {
+            const btn = e.target.closest('[data-action="toggle-guidance"]');
+            if(btn){
+                const guidanceDiv = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                guidanceDiv.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                btn.innerHTML = `${guidanceDiv.classList.contains('hidden') ? 'Show' : 'Hide'} Step-by-Step Guidance ${icon.outerHTML}`;
+            }
+        });
+
+        // --- SAVED & COMPARE PAGES ---
+        function renderSavedPage() {
+            const container = document.getElementById('saved-colleges-container');
+            if (savedList.length > 0) {
+                container.innerHTML = `<div class="text-center mb-8"><h2 class="text-3xl font-bold text-white">Your Saved Colleges</h2><p class="text-gray-400">Review and compare your top choices.</p></div><div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">${savedList.map(getCollegeCardHTML).join('')}</div>`;
+            } else {
+                container.innerHTML = `<div class="flex flex-col items-center justify-center text-center h-64 bg-gray-800/50 p-8 rounded-lg"><i data-lucide="heart" class="w-12 h-12 text-cyan-400 mb-4"></i><h3 class="text-2xl font-bold text-white">Your list is empty</h3><p class="text-gray-400 mt-2">Start exploring and save colleges to see them here.</p></div>`;
+            }
+            lucide.createIcons();
+            container.addEventListener('click', (e) => {
+                const btn = e.target.closest('.action-btn');
+                if (!btn) return;
+                const action = btn.dataset.action;
+                const collegeId = parseInt(btn.dataset.collegeId);
+                const collegeList = [...dummyDegreeColleges, ...dummyPUCColleges];
+                const college = collegeList.find(c => c.id === collegeId);
+
+                if (action === 'save') { 
+                    savedList = savedList.filter(c => c.id !== collegeId);
+                    renderSavedPage();
+                    if (studentProfile) renderRecommendations(); 
+                } else if (action === 'compare') {
+                     if (compareList.some(c => c.id === collegeId)) return;
+                     if (compareList.length < 3) { compareList.push(college); renderCompareBar(); } 
+                     else { showModal("You can only compare up to 3 colleges."); }
+                }
+            });
+        }
+
+        function renderCompareBar() {
+            if (compareList.length > 0) {
+                compareBar.classList.remove('hidden');
+                compareBar.innerHTML = `
+                    <div class="max-w-7xl mx-auto flex justify-between items-center">
+                        <div class="flex items-center space-x-2 overflow-x-auto">
+                            <p class="font-semibold text-white mr-2">Comparing:</p>
+                            ${compareList.map(c => `<span class="flex-shrink-0 flex items-center bg-gray-700 text-sm px-2 py-1 rounded-full">${c.name}<button data-college-id="${c.id}" class="remove-compare-item ml-2 text-gray-400 hover:text-white"><i data-lucide="x" class="w-3.5 h-3.5 pointer-events-none"></i></button></span>`).join('')}
+                        </div>
+                        <button id="compare-now-btn" class="flex-shrink-0 bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-sky-500 transition-colors ${compareList.length < 2 ? 'opacity-50 cursor-not-allowed' : ''}" ${compareList.length < 2 ? 'disabled' : ''}>Compare (${compareList.length})</button>
+                    </div>`;
+                lucide.createIcons();
+            } else {
+                compareBar.classList.add('hidden');
+            }
+        }
+
+        function renderComparePage(){
+            const container = document.getElementById('compare-tool-container');
+            const fields = ["Ranking", "Location", "Fees", "Placement %", "Rating"];
+            const getCollegeData = (college, field) => { switch(field) { case "Ranking": return college.ranking ? `#${college.ranking}`: 'N/A'; case "Location": return college.location; case "Fees": return `₹${college.fees.toLocaleString('en-IN')}`; case "Placement %": return college.placement ? `${college.placement}%` : 'N/A'; case "Rating": return college.rating ? `${college.rating}/5.0` : 'N/A'; default: return "-"; } };
+            container.innerHTML = `
+                <div class="bg-gray-900/70 backdrop-blur-lg border border-gray-700/50 rounded-xl shadow-2xl overflow-hidden">
+                    <div class="p-6"><h2 class="text-3xl font-bold text-white">College Comparison</h2><p class="text-gray-400">A side-by-side look at your top choices.</p></div>
+                    <div class="overflow-x-auto"><table class="w-full text-left">
+                        <thead><tr class="bg-gray-800/50"><th class="p-4 font-semibold text-cyan-300 w-1/4">Feature</th>${compareList.map(c => `<th class="p-4 font-semibold text-white w-1/4 relative">${c.name}<button data-college-id="${c.id}" class="remove-compare-item absolute top-2 right-2 text-gray-500 hover:text-white"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button></th>`).join('')}</tr></thead>
+                        <tbody>${fields.map(field => `
+                            <tr class="border-t border-gray-700/50">
+                                <td class="p-4 font-semibold text-gray-300">${field}</td>
+                                ${compareList.map(c => `<td class="p-4 text-gray-400 align-top">${getCollegeData(c, field)}</td>`).join('')}
+                            </tr>`).join('')}
+                        </tbody>
+                    </table></div>
+                </div>`;
+            lucide.createIcons();
+        }
+        
+        compareBar.addEventListener('click', e => {
+            const removeBtn = e.target.closest('.remove-compare-item');
+            if(removeBtn){
+                const collegeId = parseInt(removeBtn.dataset.collegeId);
+                compareList = compareList.filter(c => c.id !== collegeId);
+                renderCompareBar();
+            }
+            if(e.target.id === 'compare-now-btn'){
+                renderComparePage();
+                showPage('compare');
+            }
+        });
+        document.getElementById('compare-tool-container').addEventListener('click', e => {
+             const removeBtn = e.target.closest('.remove-compare-item');
+             if(removeBtn){
+                const collegeId = parseInt(removeBtn.dataset.collegeId);
+                compareList = compareList.filter(c => c.id !== collegeId);
+                renderCompareBar();
+                renderComparePage();
+            }
+        });
+         document.getElementById('back-from-compare-btn').addEventListener('click', () => showPage(studentProfile ? 'recommendations' : 'home'));
+        
+        // --- CHATBOT LOGIC ---
+        const openChatbotBtn = document.getElementById('open-chatbot-btn');
+        const closeChatbotBtn = document.getElementById('close-chatbot-btn');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+
+        const addBotMessage = (message) => {
+            chatbotMessages.innerHTML += `<div class="flex justify-start"><p class="max-w-[80%] p-2 rounded-lg text-sm bg-gray-700 text-gray-200">${message}</p></div>`;
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        };
+
+        openChatbotBtn.addEventListener('click', () => chatbotWindow.classList.toggle('hidden'));
+        closeChatbotBtn.addEventListener('click', () => chatbotWindow.classList.add('hidden'));
+
+        const handleChatSend = () => {
+            const input = chatbotInput.value.trim().toLowerCase();
+            if(!input) return;
+            chatbotMessages.innerHTML += `<div class="flex justify-end"><p class="max-w-[80%] p-2 rounded-lg text-sm bg-teal-600 text-white">${chatbotInput.value.trim()}</p></div>`;
+            chatbotInput.value = '';
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            
+            setTimeout(() => {
+                let botResponse;
+                const keywords = {
+                    "filter": "To use filters, first create your profile to see the recommendations page. The filters will appear on the left (or under 'Show Filters' on mobile). You can then adjust the budget, city, and stream to narrow down your college list!",
+                    "compare": "You can compare up to 3 colleges! On any college card, click 'Add to Compare'. A bar will appear at the bottom. Once you've added at least two, click the 'Compare' button on that bar to see a side-by-side view.",
+                    "save": "To save a college, click the heart icon or 'Save' on any college card. You can view all your saved colleges by clicking the 'Saved' tab in the top navigation bar.",
+                    "list": "To save a college, click the heart icon or 'Save' on any college card. You can view all your saved colleges by clicking the 'Saved' tab in the top navigation bar.",
+                    "scholarship": "You can find scholarships by clicking the 'Scholarships' tab in the navigation bar. We have separate lists for students after Class 10th and 12th. If you've created a profile, it will automatically show the right section for you!",
+                    "match": "Our matching system calculates a 'Fit %' based on your profile. For Class 12, it considers stream, budget, and career goals. For Class 10, it focuses on your subject interests. Your quiz score also boosts the match!",
+                    "how": "Our matching system calculates a 'Fit %' based on your profile. For Class 12, it considers stream, budget, and career goals. For Class 10, it focuses on your subject interests. Your quiz score also boosts the match!",
+                    "profile": "To create your profile, click on the 'Form' tab in the navigation bar. You'll first select your class, take a short aptitude quiz, and then fill in your details to get personalized recommendations.",
+                    "form": "To create your profile, click on the 'Form' tab in the navigation bar. You'll first select your class, take a short aptitude quiz, and then fill in your details to get personalized recommendations.",
+                    "quiz": "The aptitude quiz helps us understand your strengths. It's a short, 5-question quiz tailored to your class level. Your score helps improve the accuracy of your college matches!",
+                    "test": "The aptitude quiz helps us understand your strengths. It's a short, 5-question quiz tailored to your class level. Your score helps improve the accuracy of your college matches!",
+                    "hello": "Hello! How can I assist you with finding a college or scholarship today?",
+                    "hi": "Hello! How can I assist you with finding a college or scholarship today?",
+                    "thanks": "You're welcome! Let me know if there's anything else I can help with.",
+                    "thank you": "You're welcome! Let me know if there's anything else I can help with."
+                };
+
+                const foundKeyword = Object.keys(keywords).find(key => input.includes(key));
+                botResponse = foundKeyword ? keywords[foundKeyword] : "I'm sorry, I'm not sure how to help with that. I can answer questions about using filters, comparing colleges, creating a profile, and finding scholarships. Could you try rephrasing your question?";
+                
+                addBotMessage(botResponse);
+            }, 1000);
+        };
+        chatbotSendBtn.addEventListener('click', handleChatSend);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleChatSend();
+        });
+
+
+        // --- INITIALIZATION ---
+        lucide.createIcons();
+        addBotMessage("Hi! I'm Disha's AI Counselor. Ask me how to use filters, compare colleges, or find scholarships!");
+        renderScholarshipsPage('10th'); // Pre-render initial scholarship tab
+    </script>
+</body>
+</html>
+
